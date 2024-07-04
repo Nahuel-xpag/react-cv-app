@@ -1,0 +1,12 @@
+.name-field{
+    display: flex;
+    justify-content: start;
+    align-items: center;
+}
+.name-field button{
+    height: 2rem;
+    width: 4rem;
+}
+.name-field h1{
+    flex-grow: 1;
+}
