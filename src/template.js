@@ -1,31 +1,27 @@
 const template = {
-    name: ['your name here', false],
-    phoneNumber: ['+54 2246509136', false],
-    email: ['your-email@here.com', false],
-    address: ['your address 123, your city, your country', false],
+    name: 'your name here',
+    phoneNumber: '+54 2246509136',
+    email: 'your-email@here.com',
+    address: 'your address 123, your city, your country',
     education: [
         {
             id: 0,
-            name: 'your school name here',
-            level: 'level of education'
+            name: 'your school name here - level of education'
         },
         {
             id: 1,
-            name: 'your school name here',
-            level: 'elementary-bachelor degree'
+            name: 'your school name here - level of education'
         }
     ],
     experience : [
         {
             id: 0,
-            name: 'your company name here',
-            position: 'your position in the company',
+            name: 'your company name here - your position in the company',
             responsability: 'responsabilities of your position'
         },
         {
             id: 1,
-            name: 'your company name here',
-            position: 'your position in the company',
+            name: 'your company name here - your position in the company',
             responsability: 'responsabilities of your position',
         }
     ]   
