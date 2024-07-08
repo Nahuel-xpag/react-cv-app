@@ -17,12 +17,12 @@ const template = {
         {
             id: 0,
             name: 'your company name here - your position in the company',
-            responsability: 'responsabilities of your position'
+            responsibility: 'responsibilities of your position'
         },
         {
             id: 1,
             name: 'your company name here - your position in the company',
-            responsability: 'responsabilities of your position',
+            responsibility: 'responsibilities of your position',
         }
     ]   
 }

@@ -1,12 +1,25 @@
-.name-field{
+.header{
     display: flex;
+    justify-content: end;
+    flex-wrap: wrap;
+}
+.nameField{
+    flex-grow: 1;
+    display: flex;
+    gap: 24px;
     justify-content: start;
     align-items: center;
 }
 .name-field button{
-    height: 2rem;
-    width: 4rem;
+    background-color: wheat;
 }
-.name-field h1{
-    flex-grow: 1;
+.nameField h1{
+    margin-left: 10rem;
+}
+.emailField, .phoneField, .addressField{
+    width: 60%;
+    margin-right: 3rem;
+    display: flex;
+    justify-content: end;
+    gap: 18px;
 }
