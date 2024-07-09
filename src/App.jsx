@@ -53,14 +53,14 @@ function Head({isActive, onActive}){
        ||
       <div className="nameField">
         <h1>{data.name}</h1>
-        <button onClick={()=>onActive(0)}>{<img src='./src/assets/edit.svg' style={{
+        <button onClick={()=>onActive(0)}>{<img src='https://www.svgrepo.com/show/36160/edit-button.svg' style={{
           height:10, width:10}}/>}</button>
       </div>
       }
       {isActive !== 1 &&
       <div className='phoneField'>
       <h3>{data.phoneNumber}</h3> 
-      <button onClick={()=>onActive(1)}>{<img src='./src/assets/edit.svg' style={{
+      <button onClick={()=>onActive(1)}>{<img src='https://www.svgrepo.com/show/36160/edit-button.svg' style={{
           height:10, width:10}}/>}</button>
       </div>
       ||
@@ -79,7 +79,7 @@ function Head({isActive, onActive}){
       ||
       <div className='emailField'>
       <h3>{data.email}</h3> 
-      <button onClick={()=>onActive(2)}>{<img src='./src/assets/edit.svg' style={{
+      <button onClick={()=>onActive(2)}>{<img src='https://www.svgrepo.com/show/36160/edit-button.svg' style={{
           height:10, width:10}}/>}</button>
       </div>
       }
@@ -92,7 +92,7 @@ function Head({isActive, onActive}){
       ||
       <div className='addressField'>
       <h3>{data.address}</h3> 
-      <button onClick={()=>onActive(3)}>{<img src='./src/assets/edit.svg' style={{
+      <button onClick={()=>onActive(3)}>{<img src='https://www.svgrepo.com/show/36160/edit-button.svg' style={{
           height:10, width:10}}/>}</button>
       </div>
       }
@@ -122,7 +122,7 @@ function Education({isActive, onActive}){
               return(
                 <div className='schoolField' key={school.id + "school-div"}>
                 <li key={school.id}>{school.name}</li>
-                <button onClick={()=>onActive('school' + school.id)}>{<img src='./src/assets/edit.svg' style={{
+                <button onClick={()=>onActive('school' + school.id)}>{<img src='https://www.svgrepo.com/show/36160/edit-button.svg' style={{
           height:10, width:10}}/>}</button>
               </div>
             )
@@ -154,7 +154,7 @@ function Experience({isActive, onActive}){
             <div key={job.div + 'job-div'}>
               <div className="jobName">
               <li key={job.id}>{job.name}</li>
-              <button onClick={()=>onActive('job' + job.id)}>{<img src='./src/assets/edit.svg' style={{
+              <button onClick={()=>onActive('job' + job.id)}>{<img src='https://www.svgrepo.com/show/36160/edit-button.svg' style={{
               height:10, width:10}}/>}</button>
             </div>
             <div className="aboutJob">
@@ -171,12 +171,12 @@ function Experience({isActive, onActive}){
             <div key={job.id + "job-div"}>
             <div className="jobName">
               <li key={job.id}>{job.name}</li>
-              <button onClick={()=>onActive('job' + job.id)}>{<img src='./src/assets/edit.svg' style={{
+              <button onClick={()=>onActive('job' + job.id)}>{<img src='https://www.svgrepo.com/show/36160/edit-button.svg' style={{
               height:10, width:10}}/>}</button>
             </div>
             <div className="aboutJob">
               <p key={job.id + "responsibilities"}>{job.responsibility}</p>
-              <button onClick={()=>onActive('resp' + job.id)}>{<img src='./src/assets/edit.svg' style={{
+              <button onClick={()=>onActive('resp' + job.id)}>{<img src='https://www.svgrepo.com/show/36160/edit-button.svg' style={{
               height:10, width:10}}/>}</button>
             </div>
           </div>
