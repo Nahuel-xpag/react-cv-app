@@ -1,9 +1,18 @@
 @media screen and (min-width:1000px) {
     body{
-        background-color: rgb(255, 244, 230);
         padding-left: 10%;
         padding-right: 10%;
     }
+}
+@media screen and (max-width: 600px) {
+    body, .header{
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+    }
+}
+body{
+    background-color: rgb(255, 244, 230);
 }
 .header{
     display: flex;
@@ -32,7 +41,7 @@
  .phoneField, .phoneFieldEdit
 {
     height: 50px;
-    width: 30%;
+    min-width: 30%;
     margin-right: 3rem;
     display: flex;
     justify-content: end;
