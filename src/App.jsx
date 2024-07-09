@@ -1,11 +1,9 @@
 import { useImmer } from 'use-immer'
 import template from './template.js'
 import { useState } from 'react';
-
 function CvForm() {
   const [data, setData] = useImmer(template);
   const [activeIndex, setActiveIndex] = useState('');
-  const [value, setValue] = useImmer('');
   function addData(key, newData){
       if(newData.length < 1){
         setActiveIndex('');
@@ -27,11 +25,15 @@ function CvForm() {
     }
   return (
     <>
-      <Head isActive={activeIndex} onActive={(n) => setActiveIndex(n)}
-      />
-      <Education isActive={activeIndex} onActive={(n) => setActiveIndex(n)}
+      <header>
+        <Head isActive={activeIndex} onActive={(n) => setActiveIndex(n)}
         />
-      <Experience isActive={activeIndex} onActive={(n) => setActiveIndex(n)}/>
+      </header>
+      <main>
+        <Education isActive={activeIndex} onActive={(n) => setActiveIndex(n)}
+          />
+        <Experience isActive={activeIndex} onActive={(n) => setActiveIndex(n)}/>
+      </main>
     </>
  
   )
@@ -51,13 +53,15 @@ function Head({isActive, onActive}){
        ||
       <div className="nameField">
         <h1>{data.name}</h1>
-        <button onClick={()=>onActive(0)}>Edit</button>
+        <button onClick={()=>onActive(0)}>{<img src='./src/assets/edit.svg' style={{
+          height:10, width:10}}/>}</button>
       </div>
       }
       {isActive !== 1 &&
       <div className='phoneField'>
       <h3>{data.phoneNumber}</h3> 
-      <button onClick={()=>onActive(1)}>Edit</button>
+      <button onClick={()=>onActive(1)}>{<img src='./src/assets/edit.svg' style={{
+          height:10, width:10}}/>}</button>
       </div>
       ||
       <div className='phoneFieldEdit'>
@@ -75,7 +79,8 @@ function Head({isActive, onActive}){
       ||
       <div className='emailField'>
       <h3>{data.email}</h3> 
-      <button onClick={()=>onActive(2)}>Edit</button>
+      <button onClick={()=>onActive(2)}>{<img src='./src/assets/edit.svg' style={{
+          height:10, width:10}}/>}</button>
       </div>
       }
       {isActive === 3 &&
@@ -87,7 +92,8 @@ function Head({isActive, onActive}){
       ||
       <div className='addressField'>
       <h3>{data.address}</h3> 
-      <button onClick={()=>onActive(3)}>Edit</button>
+      <button onClick={()=>onActive(3)}>{<img src='./src/assets/edit.svg' style={{
+          height:10, width:10}}/>}</button>
       </div>
       }
     </div>
@@ -114,9 +120,10 @@ function Education({isActive, onActive}){
               </div>)
             }else{
               return(
-                <div key={school.id + "school-div"}>
+                <div className='schoolField' key={school.id + "school-div"}>
                 <li key={school.id}>{school.name}</li>
-                <button onClick={()=>onActive('school' + school.id)}>Edit</button>
+                <button onClick={()=>onActive('school' + school.id)}>{<img src='./src/assets/edit.svg' style={{
+          height:10, width:10}}/>}</button>
               </div>
             )
           }
@@ -147,7 +154,8 @@ function Experience({isActive, onActive}){
             <div key={job.div + 'job-div'}>
               <div className="jobName">
               <li key={job.id}>{job.name}</li>
-              <button onClick={()=>onActive('job' + job.id)}>Edit</button>
+              <button onClick={()=>onActive('job' + job.id)}>{<img src='./src/assets/edit.svg' style={{
+              height:10, width:10}}/>}</button>
             </div>
             <div className="aboutJob">
               <input type='text' id={'resp' + job.id} placeholder={job.responsibility}
@@ -163,11 +171,13 @@ function Experience({isActive, onActive}){
             <div key={job.id + "job-div"}>
             <div className="jobName">
               <li key={job.id}>{job.name}</li>
-              <button onClick={()=>onActive('job' + job.id)}>Edit</button>
+              <button onClick={()=>onActive('job' + job.id)}>{<img src='./src/assets/edit.svg' style={{
+              height:10, width:10}}/>}</button>
             </div>
             <div className="aboutJob">
               <p key={job.id + "responsibilities"}>{job.responsibility}</p>
-              <button onClick={()=>onActive('resp' + job.id)}>Edit</button>
+              <button onClick={()=>onActive('resp' + job.id)}>{<img src='./src/assets/edit.svg' style={{
+              height:10, width:10}}/>}</button>
             </div>
           </div>
           )
