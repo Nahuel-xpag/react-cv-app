@@ -1,7 +1,9 @@
-body{
-    background-color: rgb(255, 244, 230);
-    padding-left: 10%;
-    padding-right: 10%;
+@media screen and (min-width:1000px) {
+    body{
+        background-color: rgb(255, 244, 230);
+        padding-left: 10%;
+        padding-right: 10%;
+    }
 }
 .header{
     display: flex;
