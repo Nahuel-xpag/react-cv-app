@@ -27,54 +27,55 @@ function CvForm() {
     <>
       <header>
         <Head isActive={activeIndex} onActive={(n) => setActiveIndex(n)}
-        />
+        data={data}/>
       </header>
       <main>
         <Education isActive={activeIndex} onActive={(n) => setActiveIndex(n)}
-          />
-        <Experience isActive={activeIndex} onActive={(n) => setActiveIndex(n)}/>
+          data={data}/>
+        <Experience isActive={activeIndex} onActive={(n) => setActiveIndex(n)}
+          data={data}/>
       </main>
     </>
  
   )
-function Head({isActive, onActive}){
-  let nextValue = '';
-  function handleChange(e){
-    nextValue = e.target.value
-  }
+function Head({isActive, onActive, data}){
+  const[name, setName] = useState(data.name);
+  const [phone, setPhone] = useState(data.phoneNumber);
+  const [email, setEmail] = useState(data.email);
+  const [address, setAddress] = useState(data.address);
   return(
     <div className='header'>
       {isActive === 0 &&
        <div className='nameFieldEdit'>
-       <input type="text" id="nameInput" placeholder={data.name}
-       onChange={handleChange}/>
-       <button id="submitName" onClick={() => addData('name', nextValue)}>Submit</button>
+       <input type="text" id="nameInput" value={name}
+       onChange={(e) => setName(e.target.value)}/>
+       <button id="submitName" onClick={() => addData('name', name)}>Submit</button>
        </div>
        ||
       <div className="nameField">
-        <h1>{data.name}</h1>
+        <h1>{name}</h1>
         <button onClick={()=>onActive(0)}>{<img src='https://www.svgrepo.com/show/36160/edit-button.svg' style={{
           height:10, width:10}}/>}</button>
       </div>
       }
       {isActive !== 1 &&
       <div className='phoneField'>
-      <h3>{data.phoneNumber}</h3> 
+      <h3>{phone}</h3> 
       <button onClick={()=>onActive(1)}>{<img src='https://www.svgrepo.com/show/36160/edit-button.svg' style={{
           height:10, width:10}}/>}</button>
       </div>
       ||
       <div className='phoneFieldEdit'>
        <input type="num" id="phoneInput"
-        placeholder={data.phoneNumber} onChange={handleChange}/>
-        <button onClick={() => addData('phoneNumber', nextValue)}>Submit</button>
+        value={phone} onChange={(e)=> setPhone(e.target.value)}/>
+        <button onClick={() => addData('phoneNumber', phone)}>Submit</button>
       </div> 
       }
       {isActive === 2 &&
       <div className='emailFieldEdit'>
-        <input type="text" id="emailInput" placeholder={data.email}
-        onChange={handleChange}/>
-        <button id="submitName" onClick={() => addData('email', nextValue)}>Submit</button>
+        <input type="text" id="emailInput" value={email}
+        onChange={e=>setEmail(e.target.value)}/>
+        <button id="submitName" onClick={() => addData('email', email)}>Submit</button>
       </div>
       ||
       <div className='emailField'>
@@ -85,9 +86,9 @@ function Head({isActive, onActive}){
       }
       {isActive === 3 &&
       <div className='addressFieldEdit'>
-        <input type="text" id="addresInput" placeholder={data.address}
-        onChange={handleChange}/>
-        <button id="submitName" onClick={() => addData('address', nextValue)}>Submit</button>
+        <input type="text" id="addresInput" value={address}
+        onChange={e=>setAddress(e.target.value)}/>
+        <button id="submitName" onClick={() => addData('address', address)}>Submit</button>
       </div>
       ||
       <div className='addressField'>
@@ -100,23 +101,24 @@ function Head({isActive, onActive}){
    
   )
 }
-function Education({isActive, onActive}){
-  let nextValue = '';
-  function handleChange(e){
-    nextValue = e.target.value
-  }
+function Education({isActive, onActive, data}){
+const [schools, setSchools] = useImmer(data.education)
   return(
     <div className="education-section">
       <h1>Education</h1> 
       <ul key="education">
-        {data.education.map((school, index) => {
+        {schools.map((school, index) => {
             if(isActive === "school" + school.id){
               return (
               <div key={school.id + 'school-div'} className='schoolField'>
-              <input type="text" id={'school' + school.id} placeholder={school.name}
-              onChange={handleChange} />
+              <input type="text" id={'school' + school.id} value={school.name}
+              onChange={(e) =>{setSchools(draft => {
+                draft[[index]].name = e.target.value
+              })}} />
               <button id="submitName" 
-              onClick={() => addNestedData('education', index, 'name', nextValue)}>Submit</button>
+              onClick={() => {setData(draft =>{
+                draft.education = schools
+              });setActiveIndex('')}}>Submit</button>
               </div>)
             }else{
               return(
@@ -130,9 +132,11 @@ function Education({isActive, onActive}){
       })}
     </ul>
     </div>
-  )
+   
+)
 }
-function Experience({isActive, onActive}){
+function Experience({isActive, onActive, data}){
+  const [experience, setExperience] = useImmer(data.experience)
   let nextValue = '';
   function handleChange(e){
     nextValue = e.target.value
@@ -141,13 +145,21 @@ function Experience({isActive, onActive}){
     <div className="experience-section">
       <h1>Experience</h1>
     <ul key="experience">
-    {data.experience.map((job, index) => {
+    {experience.map((job, index) => {
         if(isActive === "job" + job.id){
           return (<div key={job.id + 'job-div'}>
-          <input type="text" id={'job' + job.id} placeholder={job.name}
-          onChange={handleChange} />
+          <input type="text" id={'job' + job.id} value={job.name}
+          onChange={(e) => {
+            setExperience(draft =>{
+              draft[[index]].name = e.target.value
+            })
+          }} />
           <button id="submitJob" 
-          onClick={() => addNestedData('experience', index, 'name', nextValue)}>Submit</button>
+          onClick={() =>{
+            setData(draft =>{
+              draft.experience = experience
+            }); setActiveIndex('')
+          }}>Submit</button>
           </div>)
         }else if(isActive === "resp" + job.id){
           return(
@@ -158,10 +170,16 @@ function Experience({isActive, onActive}){
               height:10, width:10}}/>}</button>
             </div>
             <div className="aboutJob">
-              <input type='text' id={'resp' + job.id} placeholder={job.responsibility}
-              onChange={handleChange} />
+              <input type='text' id={'resp' + job.id} value={job.responsibility}
+              onChange={(e) => {setExperience(draft => {
+                draft[[index]].responsibility = e.target.value
+              })}} />
               <button id='submitAbout'
-              onClick={() => addNestedData('experience', index, 'responsibility', nextValue)}>Submit</button>
+              onClick={() =>{
+                setData(draft =>{
+                  draft.experience = experience
+                }); setActiveIndex('')
+              }}>Submit</button>
             </div>
             </div>
           )
