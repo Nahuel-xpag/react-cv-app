@@ -1,5 +1,5 @@
-import { useImmer } from 'use-immer'
-import template from './template.js'
+import { useImmer } from 'use-immer';
+import template from './template.js';
 import { useState } from 'react';
 function CvForm() {
   const [data, setData] = useImmer(template);
@@ -131,16 +131,19 @@ const [schools, setSchools] = useImmer(data.education)
           }
       })}
     </ul>
+    <button id="addJob" onClick={() =>{
+    setData(draft => {
+      draft.education[[schools.length]] = {id: schools.length,
+        name: 'your school name here - level of education',
+      }
+    })
+  }}>Add</button>
     </div>
    
 )
 }
 function Experience({isActive, onActive, data}){
   const [experience, setExperience] = useImmer(data.experience)
-  let nextValue = '';
-  function handleChange(e){
-    nextValue = e.target.value
-  }
   return(
     <div className="experience-section">
       <h1>Experience</h1>
@@ -166,7 +169,7 @@ function Experience({isActive, onActive, data}){
             <div key={job.div + 'job-div'}>
               <div className="jobName">
               <li key={job.id}>{job.name}</li>
-              <button onClick={()=>onActive('job' + job.id)}>{<img src='https://www.svgrepo.com/show/36160/edit-button.svg' style={{
+              <button onClick={()=>{onActive('job' + job.id)}}>{<img src='https://www.svgrepo.com/show/36160/edit-button.svg' style={{
               height:10, width:10}}/>}</button>
             </div>
             <div className="aboutJob">
@@ -202,6 +205,14 @@ function Experience({isActive, onActive, data}){
         }
     })}
   </ul>
+  <button id="addJob" onClick={() =>{
+    setData(draft => {
+      draft.experience[[experience.length]] = {id: experience.length,
+        name: 'your company name here - your position in the company',
+        responsibility: 'responsibilities of your position'
+      }
+    })
+  }}>Add</button>
   </div>
   )
    
